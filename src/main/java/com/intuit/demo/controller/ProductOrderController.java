@@ -24,6 +24,12 @@ public class ProductOrderController {
 	@Autowired ProductServiceImpl productService;
 	@Autowired OrderServiceImpl orderService;
 	
+	/**
+	 * 
+	 * @param productId
+	 * @return
+	 * @throws CustomException
+	 */
 	@GetMapping(value = "/get-price/{id}")
 	public Double getPriceOfProduct(@PathVariable("id") long productId) throws CustomException {
 		 
@@ -34,11 +40,16 @@ public class ProductOrderController {
 		return product.get().getPrice();
 	}
 	
+	/**
+	 * 
+	 * @param order
+	 * @return
+	 * @throws CustomException
+	 */
 	@PostMapping(value = "/save-order")
 	public Order saveOrder(@RequestBody Order order) throws CustomException {
 		 order.setDate(LocalDate.now());
 		return orderService.create(order);
-		// return "Order created successfully";
 	}
 	
 
